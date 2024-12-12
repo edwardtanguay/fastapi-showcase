@@ -2,6 +2,10 @@
 
 This is a site to collect examples of using FastAPI and Python to create quick and simple APIs that use Swagger.
 
+## repository
+
+- https://github.com/edwardtanguay/fastapi-showcase
+
 ## using the virtual directory
 
 - `source env/Scripts/activate`
