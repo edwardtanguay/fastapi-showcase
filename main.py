@@ -1,4 +1,5 @@
 import asyncio
+import os
 from pydantic import BaseModel, Field
 from typing import Annotated, Union
 from fastapi import FastAPI, HTTPException, Body, Form, File, Path, UploadFile
@@ -78,6 +79,10 @@ async def upload_book_image(book_id: Annotated[int, Path()], file: UploadFile):
 		book_data = next(book for book in BOOKS if book["id"] == book_id)
 		book_data["file_name"] = file.filename
 		file_content = await file.read()
+		save_path = f"./uploads/{file.filename}"
+		os.makedirs(os.path.dirname(save_path), exist_ok=True)
+		with open(save_path, "wb") as f:
+			f.write(file_content)
 		return book_data
 	except:
 		raise HTTPException(status_code=404, detail="book not found")
