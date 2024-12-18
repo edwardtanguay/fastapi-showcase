@@ -1,12 +1,18 @@
+from enum import Enum
 from fastapi import FastAPI
 from routers import books, flashcards
 
+class Tags(Enum):
+    home: str = "Home",
+    books: str = "Books"
+    flashcards: str = "Flashcards"
+
 app = FastAPI()
-app.title = "Hello World API"
+app.title = "Info API"
 
-app.include_router(books.router)
-app.include_router(flashcards.router)
+app.include_router(books.router, tags=[Tags.books])
+app.include_router(flashcards.router, tags=[Tags.flashcards])
 
-@app.get("/")
+@app.get("/", tags=[Tags.home])
 async def info():
-	return {"name": "Info API"}
+    return {}

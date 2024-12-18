@@ -4,7 +4,7 @@ This is a site to collect examples of using FastAPI and Python to create quick a
 
 ## repository
 
-- https://github.com/edwardtanguay/fastapi-showcase
+- https://github.com/edwardtan	guay/fastapi-showcase
 
 ## using the virtual directory
 
