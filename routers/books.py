@@ -2,7 +2,7 @@ import asyncio
 import os
 from pydantic import BaseModel, Field
 from typing import Annotated, Union
-from fastapi import HTTPException, Path, UploadFile, APIRouter
+from fastapi import HTTPException, Path, UploadFile, APIRouter, status
 from data import BOOKS
 
 router = APIRouter(
@@ -29,7 +29,7 @@ async def get_book(id:int):
 		book = next(book for book in BOOKS if book["id"] == id)
 		return book
 	except:
-		raise HTTPException(status_code=404, detail="book not found")
+		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="book not found")
 
 # EXAMPLE OF POST WITHOUT MODEL
 # @router.post("/book")
